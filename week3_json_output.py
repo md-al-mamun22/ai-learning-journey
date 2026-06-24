@@ -18,13 +18,13 @@ def extract_client_info(client_message):
             "messages": [
                 {
                     "role": "system",
-                    "content": """You are a data extraction assistant. 
-                    Extract information from the client message and return ONLY a JSON object with these fields:
-                    - name (string)
-                    - problem (string)
-                    - urgency (low/medium/high)
-                    
-                    Return ONLY the JSON, no other text."""
+                    "content": """You are a data extraction assistant.
+Extract information from the client message and return ONLY a JSON object with these fields:
+- name (string)
+- problem (string)
+- urgency (low/medium/high)
+
+Return ONLY the JSON, no other text, no markdown, no backticks."""
                 },
                 {
                     "role": "user",
@@ -33,9 +33,14 @@ def extract_client_info(client_message):
             ]
         }
     )
-    
+
     result = response.json()["choices"][0]["message"]["content"]
-    return json.loads(result)
+    result = result.strip()
+    if result.startswith("```"):
+        result = result.split("```")[1]
+        if result.startswith("json"):
+            result = result[4:]
+    return json.loads(result.strip())
 
 # Test
 message = "Hi, my name is Sarah. I have been having severe back pain for 3 days and can barely walk."
