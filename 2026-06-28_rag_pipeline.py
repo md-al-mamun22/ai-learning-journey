@@ -65,6 +65,9 @@ documents = [
     "Our clinic is open Monday to Friday, 9am to 6pm. Saturday 10am to 4pm.",
     "We accept most major insurance plans including BlueCross and Aetna.",
     "New patient consultation is free for the first visit."
+    "We offer nutrition counseling sessions every Tuesday"
+    "Dr. Sarah specializes in sports injury rehabilitation"
+    "Mamun is a proffesional wordpress developer and he is working with us for 5 years"
 ]
 
 print("📚 Step 1: Documents index done...")
